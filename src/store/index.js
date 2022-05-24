@@ -1,4 +1,5 @@
 import { createStore, applyMiddleware, compose, combineReducers } from 'redux';
+import fruitReducer from './fruitReducer'
 
 // `combineReducers` combines all the reducer functions into one big reducer
 // function, which is typically called `rootReducer`. This is the most important
@@ -6,6 +7,10 @@ import { createStore, applyMiddleware, compose, combineReducers } from 'redux';
 // components.
 
 // create rootReducer here:
+
+const rootReducer = combineReducers({
+  fruitState: fruitReducer
+});
 
 // `enhancer` allows you to alter the store and add functionality such as the
 // Redux DevTools and logger (similar to morgan) middleware
@@ -27,7 +32,7 @@ if (process.env.NODE_ENV !== 'production') {
   const logger = require('redux-logger').default;
   const composeEnhancers =
     typeof window === 'object' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ ?
-    window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({ trace: true }) : compose;
+      window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({ trace: true }) : compose;
   enhancer = composeEnhancers(applyMiddleware(logger));
 }
 
